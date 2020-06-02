@@ -72,7 +72,7 @@ See all dishes
 
 Add new dish with ingredients. 
 
-The 'dishes' route receives 'name' which is the dish name, 'custom' which identifies whether the dish is customized or not and 'ingredientsList' which is a list of ids of the extra ingredients that have been chosen. If 'ingredientsList' is empty, no extra ingredients are added to the dish.
+Add new dish with ingredients. The 'dishes' route receives 'name' which is the dish name, 'custom' which identifies whether the dish is customized or not and 'ingredientsList' which is a list of ids of the ingredients that make up the dish.
 ```
 1) Select the 'POST' option
 2) Enter the URL: http://localhost:8080/dishes/
@@ -95,7 +95,9 @@ The 'dishes' route receives 'name' which is the dish name, 'custom' which identi
 4) Click on the 'Send' button
 ```
 
-Add new dish without ingredients
+Add new dish without ingredients. 
+
+If 'custom' is true and 'ingredientsList' is empty, no ingredients make up the dish, as they must be chosen at checkout.
 ```
 1) Select the 'POST' option
 2) Enter the URL: http://localhost:8080/dishes/
