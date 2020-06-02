@@ -83,7 +83,6 @@ public class CheckoutServiceImpl implements CheckoutService {
     }
 
     public BigDecimal calculatePrice(Checkout checkout, Dishes dish) {
-
         BigDecimal priceWithDiscount = calculatePriceByIngredientsPromotion(checkout, dish);
         if (!Objects.isNull(priceWithDiscount)) {
             return priceWithDiscount;
@@ -98,8 +97,7 @@ public class CheckoutServiceImpl implements CheckoutService {
         return sumTotalIngredientsPrice(checkout, dish);
     }
 
-    private BigDecimal calculatePriceByIngredientsPromotion(Checkout checkout, Dishes dish) {
-
+    public BigDecimal calculatePriceByIngredientsPromotion(Checkout checkout, Dishes dish) {
         List<Long> ingredientsIds = getIngredientsIdsForPromotions(checkout, dish);
         List<IngredientsPromotion> ingredientsPromotionList = ingredientsPromotionRepository.findIngredientsPromotionsByIngredientHaveId(ingredientsIds);
         if (CollectionUtils.isEmpty(ingredientsPromotionList)) {
@@ -108,7 +106,7 @@ public class CheckoutServiceImpl implements CheckoutService {
 
         Integer discountPayment = null;
         for (IngredientsPromotion ingredientsPromotion : ingredientsPromotionList) {
-            if (ingredientsIds.contains(ingredientsPromotion.getIngredientDontHave().getId())) {
+            if (!ingredientsIds.contains(ingredientsPromotion.getIngredientDontHave().getId())) {
                 discountPayment = ingredientsPromotion.getDiscountPayment();
                 break;
             }
@@ -138,7 +136,7 @@ public class CheckoutServiceImpl implements CheckoutService {
         return dishIngredientsPrice.add(customIngredientsPrice);
     }
 
-    private BigDecimal calculatePriceByQuantityPromotion(Checkout checkout, Dishes dish) {
+    public BigDecimal calculatePriceByQuantityPromotion(Checkout checkout, Dishes dish) {
         List<Long> ingredientsIds = getIngredientsIdsForPromotions(checkout, dish);
         List<QuantityPromotion> quantityPromotionList = quantityPromotionRepository.findQuantityPromotionsByIngredientIsIn(ingredientsIds);
         if (CollectionUtils.isEmpty(quantityPromotionList)) {
@@ -164,7 +162,7 @@ public class CheckoutServiceImpl implements CheckoutService {
                 int mod = Math.floorMod(ingredientQuantity, quantityPromotionItem.getIngredientQuantity());
                 int quantityToPay = mod + (quantityPromotionItem.getIngredientPayment() * div);
                 BigDecimal total = ingredient.getPrice().multiply(BigDecimal.valueOf(quantityToPay));
-                price = price.add(total);
+                price = price.add(total).setScale(2, RoundingMode.HALF_EVEN);
                 continue;
             }
 

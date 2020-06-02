@@ -30,7 +30,6 @@ public class IngredientsPromotion implements Serializable {
     private Integer discountPayment;
 
     public IngredientsPromotion() {
-
     }
 
     public IngredientsPromotion(String name, Ingredients ingredientHave, Ingredients ingredientDontHave, Integer discountPayment) {
