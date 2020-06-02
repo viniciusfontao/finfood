@@ -40,13 +40,4 @@ public class CheckoutController {
             return new ResponseEntity<>(checkout, HttpStatus.BAD_REQUEST);
         }
     }
-
-//    @RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
-//    @ResponseBody
-//    public HttpEntity<String> teste() {
-//            checkoutServiceImpl.calculatePriceByIngredientsPromotion(new ArrayList<>());
-//            return new ResponseEntity<>("asdasd", HttpStatus.OK);
-//
-//    }
-
 }
