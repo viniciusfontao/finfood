@@ -204,6 +204,11 @@ mvn clean test
 
 ```
 
+## TODO
+
+* Finish Services unit test
+* Docker
+* Swagger
 
 ## Build with
 
