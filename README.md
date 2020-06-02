@@ -32,7 +32,7 @@ mvn spring-boot:run
 
 ## API
 How to use the API.
-In these examples I will use [Postman] (https://www.getpostman.com/) to test the API.
+In these examples I will use [Postman](https://www.getpostman.com/) to test the API.
 In the 'Body' (return) tab, make sure that next to 'Preview' is selected JSON.
 
 See all ingredients
@@ -198,9 +198,7 @@ The checkout receives 'dishId' which is the id of the chosen dish and 'ingredien
 To execute the tests you run the following command
 
 ```
-spring.datasource.url= URL_MYSQL/SCHEMA_NAME
-spring.datasource.username= USER_NAME_MYSQL
-spring.datasource.password= PASSWORD_MYSQL
+mvn clean test
 
 ```
 
