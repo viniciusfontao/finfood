@@ -9,9 +9,7 @@ import br.com.finfood.repositories.DishesRepository;
 import br.com.finfood.repositories.IngredientsPromotionRepository;
 import br.com.finfood.repositories.IngredientsRepository;
 import br.com.finfood.repositories.QuantityPromotionRepository;
-import org.junit.Rule;
 import org.junit.jupiter.api.Test;
-import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -41,9 +39,6 @@ public class CheckoutServiceImplTest {
 
     @Autowired
     private CheckoutServiceImpl checkoutServiceImpl;
-
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
 
     @Test
     public void validateDishDishIdNull() {
